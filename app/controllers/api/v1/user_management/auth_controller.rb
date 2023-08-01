@@ -26,10 +26,13 @@ class Api::V1::UserManagement::AuthController < ApplicationController
         expires_in: access_token.expires_in
       }
 
+
       render json: { token: token}, status: :ok
 
     elsif params[:grant_type] == "password"
+
       @user = User.find_by(email: params[:email])
+
       if @user && @user.valid_password?(params[:password])
 
         access_token = Doorkeeper::AccessToken.create(
@@ -37,12 +40,14 @@ class Api::V1::UserManagement::AuthController < ApplicationController
           expires_in: Doorkeeper.configuration.access_token_expires_in.to_i,
           refresh_token: generate_refresh_token
         )
+        #debugger
         token={
           token_type: "Bearer",
           access_token: access_token.token,
           refresh_token: access_token.refresh_token,
           expires_in: access_token.expires_in
         }
+        # debugger
         render json: { token: token}, status: :ok
       else
         render json: { error: "Invalid Credentials" }, status: :unauthorized
