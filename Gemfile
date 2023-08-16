@@ -55,3 +55,4 @@ gem 'devise'
 
 gem "active_model_serializers"
 gem 'httparty'
+gem 'activerecord-reset-pk-sequence'

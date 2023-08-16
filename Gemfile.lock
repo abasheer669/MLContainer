@@ -59,6 +59,7 @@ GEM
     activerecord (7.0.6)
       activemodel (= 7.0.6)
       activesupport (= 7.0.6)
+    activerecord-reset-pk-sequence (0.2.1)
     activestorage (7.0.6)
       actionpack (= 7.0.6)
       activejob (= 7.0.6)
@@ -212,6 +213,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  activerecord-reset-pk-sequence
   bootsnap
   debug
   devise

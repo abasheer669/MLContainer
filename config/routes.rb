@@ -17,6 +17,27 @@ Rails.application.routes.draw do
           delete 'logout', to: 'auth#destroy'
           put 'change_password', to: 'auth#update_password'
         end
+
+        namespace :container_management do
+          resources :containers do
+            get 'logs', on: :member, to: 'containers#show_logs'
+            get 'comments', on: :member, to: 'containers#show_comments'
+            resources :activity do
+              resources :items
+              # resources :logs
+              collection do
+                put 'change_status'
+              end
+
+            end
+
+          end
+        end
+
+        namespace :customer_management do
+          resources :customers
+        end
+
     end
   end
 end
